@@ -1,42 +1,44 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-//config bola
 canvas.width = 500;
 canvas.height = 500;
-let square = {
+
+// círculo 
+let circle = {
     x: 200,
     y: 200,
-    radius: 50,
+    radius: 25,
     color: "blue",
     speed: 5
 };
 
-// função parar desenhar  bola 
-
-function drawSquare(){
+function desenhaCirculo(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    ctx.fillStyle = square.color;
-    ctx.clearRect(square.x,square.y, square.size, square.size);
+    ctx.fillStyle = circle.color;
+    ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
     ctx.closePath();
-
 }
-function moveSquare(event){
+
+function moveCircle(event){
     const key = event.key;
-    
-    if(key === "ArrowUp" && square.y > 0){
-        square.y -= square.speed;
-    }else if(key === "ArrowDown" && square.y + square.size < canvas.height){
-        square.y += square.speed;
-    }else if(key === "ArrowLeft" && square.x > 0){
-        square.x -= square.speed;
-    }else if(key === "ArrowRight" && square.x +square.size < canvas.height){
-        square.x += square.speed;
+
+    if(key === "ArrowUp" && circle.y - circle.radius > 0){
+        circle.y -= circle.speed;
+    } else if(key === "ArrowDown" && circle.y + circle.radius < canvas.height){
+        circle.y += circle.speed;
+    } else if(key === "ArrowLeft" && circle.x - circle.radius > 0){
+        circle.x -= circle.speed;
+    } else if(key === "ArrowRight" && circle.x + circle.radius < canvas.width){
+        circle.x += circle.speed;
     }
-    
-    drawSquare();
+
+    desenhaCirculo();
 }
 
-window.addEventListener('keydown', moveSquare);
-drawSquare();
+window.addEventListener('keydown', moveCircle);
+desenhaCirculo();
 

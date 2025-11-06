@@ -12,7 +12,7 @@ desenhaCirculo();
 
 function desenhaCirculo() {
     ctx.beginPath();
-    ctx.arc(400, 100, 50, 0, Math.PI * 2, false);
+    ctx.arc(420, 100, 50, 0, Math.PI * 2, false);
     ctx.fillStyle = 'blue';
     ctx.fill();
     ctx.strokeStyle = 'black';
