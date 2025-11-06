@@ -1,21 +1,26 @@
 const canvas = document.getElementById('Canvas');
 const ctx = canvas.getContext('2d');
 //degini o tamanho do canvas
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 500;
+canvas.height = 500;
+canvas.style.border = "1px solid black";
+
 
 let retangulo = {
     x: 20,
     y: 40,
     dx: 2,
     dy: 2,
+    width: 80,
+    height: 50,
     color: "green"
 };
 
 
 function desenharRetangulo() {
     ctx.beginPath();
-    ctx.rect(retangulo.dx, retangulo.dy, retangulo.x, retangulo.y);
+    // desenha usando x,y como posição e width/height como dimensões
+    ctx.rect(retangulo.x, retangulo.y, retangulo.width, retangulo.height);
     ctx.fillStyle = retangulo.color;
     ctx.fill();
     ctx.strokeStyle = 'black';
@@ -26,12 +31,12 @@ function desenharRetangulo() {
 function atualizaPosicaoRetangulo(){
     retangulo.x += retangulo.dx; 
     retangulo.y += retangulo.dy;    
-    
-    if(retangulo.x > canvas.width || retangulo.x  < 0){
+    if(retangulo.x + retangulo.width > canvas.width || retangulo.x < 0){
         retangulo.dx = -retangulo.dx;
+      
     }
-    
-    if(retangulo.y  > canvas.height || retangulo.y  < 0){
+
+    if(retangulo.y + retangulo.height > canvas.height || retangulo.y < 0){
         retangulo.dy = -retangulo.dy;
     }
 }
